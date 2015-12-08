@@ -8,3 +8,7 @@ This is a more up to date syntax highlighting scheme than the other Ethereum Syn
 # Installation: 
 
 use Package Control in Sublime Text 2/3
+
+#Recommended Themes
+
+Neon, Brogrammer, Vim Blackboard
