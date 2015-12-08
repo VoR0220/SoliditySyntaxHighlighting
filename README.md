@@ -1,4 +1,5 @@
-# SoliditySyntaxHighlighting
+# SoliditySyntaxHighlighting 
+for Sublime Text 2/3
 
 # A note: 
 
@@ -6,4 +7,4 @@ This is a more up to date syntax highlighting scheme that is for people who want
 
 # Installation: 
 
-use Package Control
+use Package Control in Sublime Text 2/3
