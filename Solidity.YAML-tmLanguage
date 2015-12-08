@@ -1,0 +1,98 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Solidity
+scopeName: source.sol
+fileTypes: [sol]
+uuid: 9fd19e66-b616-4ce1-b0e8-f9bf099367f2
+
+patterns:
+
+- comment: Nat Spec
+  name: sublimelinter.outline.warning, comment.block
+  match: (\/\/\/ \@.*)
+
+- comment: Single Line Comments
+  name: comment.line
+  match: \/\/.*
+
+- comment: Block Comments
+  name: comment.line
+  begin: (\/\*)
+  end: (\*\/)
+
+
+- comment: Hexadecimal
+  name: constant.numeric
+  match: \b(0[xX][a-fA-F0-9]+)\b  
+
+- comment: Time References/Value References/True & False
+  name: constant.language
+  match: \b(now|seconds|minutes|hours|days|weeks|years|wei|finney|szabo|ether|true|false)\b
+
+- comment: handling Msg, Tx, This, New and Block
+  match: \b(block|msg|tx|this|new)+(\.?\w*)\b
+  captures:
+    '1': {name: storage.type}
+    '2': {name: support.constant}
+  
+- comment: push, length, send, balance, call
+  match: \b(push|length|send|balance|call|value|gas)
+  name: storage.clojure
+
+- comment: Strings
+  name: string.quoted
+  match: ([\"\'].*[\"\'])
+
+- comment: Operators
+  name: keyword.operator
+  match: (=|!|>|<|\||&|\^|\*|%|\~|\-|\+|\/|\?)
+
+- comment: Control Flow
+  name: keyword.control
+  match: \b(while|for|if|else|break|continue|returns?|throw|using|let|selfdestruct|delete)
+
+- comment: Library/Contract initilization
+  match: (library|contract)\s+([A-Za-z_]\w*)(\s+is)?(\s[^{]*)?
+  captures:
+    '1': {name: entity.name.class}
+    '2': {name: variable}
+    '3': {name: keyword.control}
+    '4': {name: entity.other.inherited-class}
+
+
+- comment: Import and alias statements
+  name: keyword.control.import.python
+  match: \b(import|as|from)\b
+
+- comment: Declare functions/modifiers/
+  match: \b(struct|function|modifier|event|enum)\s+([A-Za-z_]\w*)\b
+  captures:
+    '1': {name: support.function}
+
+- comment: Mapping definition
+  match: \b(mapping)\s*\((.*)\s+(=>)\s+(.*)\)(\s+(?:private|public|external|inherited))?\s+([A-Za-z_]\w*)\b
+  captures:
+    '1': {name: storage.type}
+    '2': {name: variable}
+    '3': {name: keyword.operator}
+    '4': {name: variable}
+    '5': {name: storage.type}
+
+- comment: Variable/Array definitions
+  match: \b(address|var|string\d*|bytes\d*|int\d*|uint\d*|bool)((?:\[\])+)?
+  captures:
+    '1': {name: variable}
+    '2': {name: keyword.operator}
+
+- comment: Accessibility
+  name: storage.type
+  match: (\s(?:indexed|public|private|external|internal|anonymous))
+
+- comment: Constant, Storage and Memory
+  name: support.constant
+  match: (\s(?:memory|storage|constant|const)\b)
+
+- comment: Mathematical and Cryptographic Functions
+  name: keyword.mathematics.matlab
+  match: \b(addmod|mulmod|sha3|sha256|ripemd160|ecrecover)
+
